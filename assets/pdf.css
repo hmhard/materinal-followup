@@ -1,0 +1,96 @@
+.data-table table,
+.data-table th,
+.data-table td {
+    border: 0.5px solid black;
+    font-size: 10px;
+}
+
+table.data-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-agregate table,
+.table-agregate th,
+.table-agregate td {
+    border: 0.5px solid black;
+    font-size: 10px;
+}
+
+.table-agregate tr:nth-child(4) {
+    background-color: #f2f2f256;
+}
+
+.table-agregate table {
+    border-collapse: collapse;
+    width: 20%;
+    margin: 100px;
+}
+
+.table-agregate td {
+    text-align: right;
+}
+
+th,
+td {
+    padding: 5px;
+    text-align: left;
+}
+
+.pdfheader {
+    text-align: center;
+    height: 50px;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f2f2f2ab;
+}
+
+table.stat-table td {
+    text-decoration: underline;
+}
+
+table.table-agregate {
+    border: 0.5px solid black;
+    font-size: 11px;
+}
+
+element {}
+
+.table:not(.table-dark) {
+    color: inherit;
+}
+
+.card-body>.table {
+    margin-bottom: 0;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: transparent;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+.card {
+    word-wrap: break-word;
+}
+
+body {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+}
