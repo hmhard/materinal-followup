@@ -1,5 +1,35 @@
 <?php include('includes/header.php'); ?>
 
+<?php
+
+if(isset($_POST['delete'])){
+ 
+    $sql = "DELETE FROM user WHERE id=".$_POST['user_id'];
+    if(mysqli_query($conn, $sql)){
+        
+       setMessage("Deleted successfully");
+
+        header('Location:user.list.php');
+    }
+    
+
+}
+
+
+						// login user and set session
+						$msg = '';
+						$error = false;
+
+                        $sql = "SELECT * FROM user";
+                        $result = mysqli_query($conn, $sql);
+                
+                       
+                         
+        
+
+						?>
+
+
 	<div class="col-12">
 
 		<h4>User list </h4>
@@ -9,7 +39,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"> Users list</h3>
-                <a href="patient.new.php" class="btn btn-primary btn-sm mx-3">New User</a>
+                <a href="user.new.php" class="btn btn-primary btn-sm mx-3">New User</a>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -27,25 +57,49 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Email</th>
                             <th>Full Name</th>
                             <th>Phone</th>
-                            <th>Gender</th><th>actions</th>
+                            <th>Gender</th>
+                            <th>Registered At</th>
+                            <th>actions</th>
 
                         </tr>
                     </thead>
                     <tbody>
+<?php
 
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+  
+?>
                         <tr>
-                            <td>183</td>
-                            <td>Abebe Bekele</td>
-                            <td>0912121212</td>
-                             <td><span class="tag tag-success">Male</span></td>
+                            <td><?php echo $row['id'] ?></td>
+                            <td><?php echo $row['email'] ?></td>
+                            <td><?php echo $row['first_name']." ".$row['last_name']; ?></td>
+                            <td><?php echo $row['phone'] ?></td>
+                            <td><span class="tag tag-success"><?php echo $row['gender'] ?></span></td>
+                            <td><?php echo $row['registered_at'] ?></td>
                             <td>
 								<a href="#" class="btn btn-warning btn-sm">edit</a>
-								<a href="#" class="btn btn-danger btn-sm">delete</a>
+                                <form method="post" onsubmit="return confirm('are you sure you want to delete this user');" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-horizontal form-inline" >
+                                <input type="hidden" name="user_id" value="<?php echo $row['id'];?>"/>
+                                <input type="hidden" name="delete" value="true"/>
+                                    <button  class="btn btn-danger btn-sm">delete</button>
+    </form>
 							 </td>
                         </tr>
 
+                        <?php
+
+}
+} else {
+  echo "0 results";
+}
+
+                        
+                        ?>
 
                     </tbody>
                 </table>

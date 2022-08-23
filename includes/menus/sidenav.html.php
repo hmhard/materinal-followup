@@ -19,7 +19,10 @@
 
 				</div>
 				<div class="info">
-					<a href="#" class="d-block">Abebe Bekele</a>
+					<a href="#" class="d-block"><?php 
+					if($loggedIn)
+					echo $user->fullName;
+					 ?></a>
 
 
 
