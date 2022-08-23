@@ -92,7 +92,7 @@ include 'includes/helpers/connection.php';
 								$result = mysqli_stmt_get_result($stmt);
 								$row = mysqli_fetch_assoc($result);
 								
-								print_r($row);
+								
 
 								
 

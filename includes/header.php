@@ -3,6 +3,8 @@
 include 'helpers/session_start.php';
 include 'helpers/connection.php';
 include 'helpers/message.php';
+include 'helpers/mysqlHelper.php';
+include 'helpers/myHelper.php';
 
 clearMessages();
 
