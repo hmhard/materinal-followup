@@ -25,24 +25,24 @@ All rights reserved.
 <div id="temp-modal">
 </div>
 
-<script src="assets/plugins/jquery/jquery.min.js"></script>
-<script src="assets/plugins/moment/moment.min.js"></script>
-<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
-<script src="assets/plugins/chart.js/Chart.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/daterangepicker.js"></script>
+<script src="assets/js/Chart.min.js"></script>
 
-<script src="assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="assets/js/tempusdominus-bootstrap-4.min.js"></script>
 
-<script src="assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="assets/js/jquery.overlayScrollbars.min.js"></script>
 
-<script src="assets/dist/js/adminlte.js"></script>
+<script src="assets/js/adminlte.js"></script>
 
-<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/plugins/pace-progress/pace.min.js"></script>
-<script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/pace.min.js"></script>
+<script src="assets/js/bootstrap-switch.min.js"></script>
 
-<script src="assets/plugins/toastr/toastr.min.js"></script>
-<script src="assets/plugins/select2/js/select2.full.min.js"></script>
-<script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="assets/js/toastr.min.js"></script>
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/sweetalert2.min.js"></script>
 <script src="assets/jquery.autocomplete.min.js"></script>
 <script>
 
