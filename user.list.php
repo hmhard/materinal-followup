@@ -82,7 +82,7 @@ if (mysqli_num_rows($result) > 0) {
                             <td><span class="tag tag-success"><?php echo $row['gender'] ?></span></td>
                             <td><?php echo $row['registered_at'] ?></td>
                             <td>
-								<a href="#" class="btn btn-warning btn-sm">edit</a>
+								<a href="user.edit.php?id=<?php echo $row['id'];?>" class="btn btn-warning btn-sm">edit</a>
                                 <form method="post" onsubmit="return confirm('are you sure you want to delete this user');" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-horizontal form-inline" >
                                 <input type="hidden" name="user_id" value="<?php echo $row['id'];?>"/>
                                 <input type="hidden" name="delete" value="true"/>

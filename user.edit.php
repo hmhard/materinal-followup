@@ -1,8 +1,32 @@
 <?php include('includes/header.php'); ?>
 <?php
-// login user and set session
+
+
+
+// fetch new user 
+
+$sql = "SELECT * FROM user where id=?";
+
+$stmt = mysqli_prepare($conn, $sql);
+
+
+mysqli_stmt_bind_param($stmt, 'i',$_GET['id']);
+
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
+$row = mysqli_fetch_assoc($result);
+
+
+$user = (object) $row;
+
+
+// user edit 
 $msg = '';
 $error = false;
+
+
+
 
 if (isset($_POST['register'])) {
 
@@ -59,7 +83,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" value="" name="email" id="email" class="form-control" autocomplete="last_name" required>
+                            <input type="email"  name="email" id="email" class="form-control" autocomplete="email" value="<?php echo $user->email;?> " required>
                         </div>
 
                     </div>
@@ -67,7 +91,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="first-name">First Name</label>
-                            <input type="text" value="" name="first_name" id="first-name" class="form-control" autocomplete="first_name" required autofocus>
+                            <input type="text"  name="first_name" id="first-name" class="form-control" autocomplete="first_name" value="<?php echo $user->first_name;?>" required autofocus>
                         </div>
 
                     </div>
@@ -75,7 +99,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="middle_name">Middle Name</label>
-                            <input type="text" value="" name="middle_name" id="middle_name" class="form-control" autocomplete="last_name" required>
+                            <input type="text"  name="middle_name" id="middle_name" class="form-control" autocomplete="middle_name" value="<?php echo $user->middle_name;?>" required>
                         </div>
 
                     </div>
@@ -83,7 +107,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="last-name">Last Name</label>
-                            <input type="text" value="" name="last_name" id="last-name" class="form-control" autocomplete="last_name" required>
+                            <input type="text"  name="last_name" id="last-name" class="form-control" autocomplete="last_name" value="<?php echo $user->last_name;?>" required>
                         </div>
 
                     </div>
@@ -91,7 +115,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" value="" name="phone" id="phone" class="form-control" autocomplete="phone" required>
+                            <input type="text"  name="phone" id="phone" class="form-control" autocomplete="phone" value="<?php echo $user->phone;?>" required>
                         </div>
 
                     </div>
@@ -109,7 +133,7 @@ if (isset($_POST['register'])) {
                 </div>
 
 
-                <input name="register" value="Register" class="btn float-right  btn-info my-3 " type="submit">
+                <input name="register" value="Update" class="btn float-right  btn-info my-3 " type="submit">
 
                 </input>
 
