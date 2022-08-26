@@ -9,18 +9,19 @@ if (isset($_POST['register'])) {
 
 
 
-    $sql = "INSERT INTO `patient`(`nationality`, `woreda`, `registered_by_id`, `mrn`, `first_name`, `middle_name`, `last_name`, `gender`, `dateof_birth`, `house_number`, `phone`, `martial_status`, `kebele`, `allergies`, `religion_id`)
-                                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO `patient`(`nationality`, `woreda`, `registered_by_id`, `mrn`, `first_name`, `middle_name`, `last_name`, `gender`, `dateof_birth`, `house_number`, `phone`, `martial_status`, `kebele`, `allergies`, `religion_id`,status)
+                                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $allergies = "";
     $registered_by_id = $user->id;
+    $status = 0;
     $house_number=rand(10,1000);
 
 
     $stmt = mysqli_prepare($conn, $sql);
 
 
-    mysqli_stmt_bind_param($stmt, 'ssisssssssssssi', $_POST['nationality'], $_POST['woreda'], $registered_by_id,$_POST['mrn'], $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $_POST['gender'], $_POST['birth_date'],$house_number,$_POST['phone'],$_POST['marital_status'],$_POST['kebele'],$allergies,$_POST['religion']);
+    mysqli_stmt_bind_param($stmt, 'ssisssssssssssii', $_POST['nationality'], $_POST['woreda'], $registered_by_id,$_POST['mrn'], $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $_POST['gender'], $_POST['birth_date'],$house_number,$_POST['phone'],$_POST['marital_status'],$_POST['kebele'],$allergies,$_POST['religion'],$status);
 
     mysqli_stmt_execute($stmt);
 

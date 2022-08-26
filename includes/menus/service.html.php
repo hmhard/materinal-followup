@@ -13,6 +13,12 @@
 				</a>
 			</li>
 			<li class="nav-item">
+				<a href="triage.list.php" class="nav-link">
+					<i class="fa fa-tasks nav-icon"></i>
+					<p>Triage</p>
+				</a>
+			</li>
+			<li class="nav-item">
 				<a href="#" class="nav-link">
 					<i class="fa fa-tasks nav-icon"></i>
 					<p>Appointment List</p>
