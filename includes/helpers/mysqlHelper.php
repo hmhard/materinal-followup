@@ -19,9 +19,9 @@ function fetchData($table_name,$id=1){
     return (object) $row;
 }
 
-function fetchAllData($table_name){
+function fetchAllData($table_name,$order_by="id",$direction="ASC"){
     global $conn;
-    $sql = "SELECT * FROM $table_name";
+    $sql = "SELECT * FROM $table_name where 1 order by $order_by $direction";
     
     $result = mysqli_query($conn, $sql);
 

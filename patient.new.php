@@ -15,13 +15,14 @@ if (isset($_POST['register'])) {
     $allergies = "";
     $registered_by_id = $user->id;
     $status = 0;
+    $gender = "Female";
     $house_number=rand(10,1000);
 
 
     $stmt = mysqli_prepare($conn, $sql);
 
 
-    mysqli_stmt_bind_param($stmt, 'ssisssssssssssii', $_POST['nationality'], $_POST['woreda'], $registered_by_id,$_POST['mrn'], $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $_POST['gender'], $_POST['birth_date'],$house_number,$_POST['phone'],$_POST['marital_status'],$_POST['kebele'],$allergies,$_POST['religion'],$status);
+    mysqli_stmt_bind_param($stmt, 'ssisssssssssssii', $_POST['nationality'], $_POST['woreda'], $registered_by_id,$_POST['mrn'], $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $gender, $_POST['birth_date'],$house_number,$_POST['phone'],$_POST['marital_status'],$_POST['kebele'],$allergies,$_POST['religion'],$status);
 
     mysqli_stmt_execute($stmt);
 
@@ -89,17 +90,7 @@ if (isset($_POST['register'])) {
                         </div>
 
                     </div>
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <label for="male">Male</label>
-                            <input checked type="radio" name="gender" id="gender" value="male" />
-                            <label for="female">Female</label>
-                            <input type="radio" name="gender" id="female" value="female" />
-                        </div>
-
-                    </div>
+                   
                     <div class="col-sm-4">
 
                         <div class="form-group">

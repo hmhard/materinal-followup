@@ -3,12 +3,12 @@
 // login patient and set session
 $msg = '';
 $error = false;
-if(isset($_POST['register']))
-$id=$_POST['patient'];
+if (isset($_POST['register']))
+    $id = $_POST['patient'];
 else
-$id=$_GET['id'];
+    $id = $_GET['id'];
 
-$patient= fetchData("patient",$id);
+$patient = fetchData("patient", $id);
 
 if (isset($_POST['register'])) {
 
@@ -21,13 +21,13 @@ if (isset($_POST['register'])) {
     $allergies = "";
     $registered_by_id = $user->id;
     $status = 0;
-    $house_number=rand(10,1000);
+    $house_number = rand(10, 1000);
 
 
     $stmt = mysqli_prepare($conn, $sql);
 
 
-    mysqli_stmt_bind_param($stmt, 'sisiidddddd', $_POST['card_number'],$status,$_POST['order_number'], $_POST['doctor'], $_POST['patient'], $_POST['temperature'], $_POST['bp'], $_POST['pulse_rate'],$_POST['rr'],$_POST['weight'],$_POST['height']);
+    mysqli_stmt_bind_param($stmt, 'sisiiiiiiii', $_POST['card_number'], $status, $_POST['order_number'], $_POST['doctor'], $_POST['patient'], $_POST['temperature'], $_POST['bp'], $_POST['pulse_rate'], $_POST['rr'], $_POST['weight'], $_POST['height']);
 
     mysqli_stmt_execute($stmt);
 
@@ -35,11 +35,18 @@ if (isset($_POST['register'])) {
 
         setMessage("Registered successfully!");
 
+        $sql = "UPDATE patient SET status=1 WHERE id=" . $id;
 
-        header('Location:patient.list.php');
+        if (mysqli_query($conn, $sql)) {
+        }
+
+
+        header('Location:triage.list.php');
     } else {
+
         $error = true;
         $msg = 'error occuered.';
+        print_r(mysqli_error($conn));
     }
 }
 
@@ -58,29 +65,29 @@ if (isset($_POST['register'])) {
         <!-- /.card-header -->
         <div class="card-body">
             <table class="table table-striped table-">
-               
+
                 <tbody>
                     <tr>
 
                         <th>Full Name</th>
-                        <td><?php echo $patient->first_name." ".$patient->middle_name;?></td>
+                        <td><?php echo $patient->first_name . " " . $patient->middle_name; ?></td>
                         <th>MRN</th>
-                        <td><?php echo $patient->mrn;?></td>
+                        <td><?php echo $patient->mrn; ?></td>
                     </tr>
                 </tbody>
             </table>
             <form method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
 
-            
+
                 <div class="row mt-5">
-                  
+
                     <div class="col-sm-4">
 
                         <div class="form-group">
                             <label for="card_number">Card Number</label>
                             <input type="text" value="<?php echo rand(); ?>" name="card_number" id="card_number" class="form-control" autocomplete="card_number" required autofocus>
-                            <input type="hidden" name="patient" value="<?php echo $_GET['id']; ?>" />
+                            <input type="hidden" name="patient" value="<?php echo $id; ?>" />
                         </div>
 
                     </div>
@@ -88,7 +95,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="order_number">Order Number</label>
-                            <input type="order_number" value="<?php echo rand(1,100); ?>" name="order_number" id="order_number" class="form-control" required readonly>
+                            <input type="order_number" value="<?php echo rand(1, 100); ?>" name="order_number" id="order_number" class="form-control" required readonly>
                         </div>
 
                     </div>
@@ -140,21 +147,21 @@ if (isset($_POST['register'])) {
                         </div>
 
                     </div>
-                   
-                 
+
+
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <?php $doctors= fetchAllData("doctor");
-                           
+                            <?php $doctors = fetchAllData("doctor");
+
                             ?>
-                            <label for="nationality"> Assign Doctor</label>
-                            <select for="nationality" class="form-control" name="nationality" id="nationality">
-                            <?php foreach($doctors as $key=>$doctor){
+                            <label for="doctor"> Assign Doctor</label>
+                            <select for="doctor" class="form-control" name="doctor" id="doctor">
+                                <?php foreach ($doctors as $key => $doctor) {
                                 ?>
-                            <option value="<?php echo $doctor['id'];?>"><?php echo $doctor['first_name']." ".$doctor['middle_name'] ?></option>
-                             
-<?php }?>
+                                    <option value="<?php echo $doctor['id']; ?>"><?php echo $doctor['first_name'] . " " . $doctor['middle_name'] ?></option>
+
+                                <?php } ?>
 
                             </select>
 
@@ -163,8 +170,8 @@ if (isset($_POST['register'])) {
                     </div>
 
 
-                
-                   
+
+
 
 
                 </div>

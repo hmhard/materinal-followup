@@ -1,4 +1,14 @@
-<?php include('includes/header.php'); ?>
+<?php include('includes/header.php');
+
+$patients_count=count(fetchAllData("patient"));
+$appointment_count=count(fetchAllData("appointment"));
+$doctor_count=count(fetchAllData("doctor"));
+$user_count=count(fetchAllData("user"));
+
+$patients=fetchAllData("patient","id","DESC");
+
+?>
+
 
 
 <div class="row">
@@ -10,7 +20,7 @@
                 <span class="info-box-text"> <a href="patient.list.php" class="small-box-footer">
                         Total Patients
                     </a></span>
-                <span class="info-box-number">1400</span>
+                <span class="info-box-number"><?php echo $patients_count;?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -25,7 +35,7 @@
                 <span class="info-box-text"><a href="" class="small-box-footer">
                          Appointments
                     </a></span>
-                <span class="info-box-number">22</span>
+                <span class="info-box-number"><?php echo $appointment_count; ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -40,7 +50,7 @@
                 <span class="info-box-text"><a href="doctor.list.php" class="small-box-footer">
                         Total Doctors
                     </a></span>
-                <span class="info-box-number">100</span>
+                <span class="info-box-number"><?php echo $doctor_count;?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -55,7 +65,7 @@
                 <span class="info-box-text"><a href="user.list.php" class="small-box-footer">
                         Total Users
                     </a></span>
-                <span class="info-box-number">200</span>
+                <span class="info-box-number"><?php echo $user_count;?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -91,22 +101,26 @@
                             <th>ID</th>
                             <th>Full Name</th>
                             <th>Phone</th>
-                            <th>Gender</th><th>actions</th>
+                            <th>Gender</th>
+                          
 
                         </tr>
                     </thead>
                     <tbody>
 
+                    <?php foreach ($patients as $key=>$patient){
+                        
+                        if($key>4)
+                        break;
+                        ?>
                         <tr>
-                            <td>183</td>
-                            <td>Abebe Bekele</td>
-                            <td>0912121212</td>
-                             <td><span class="tag tag-success">Male</span></td>
-                            <td>
-								<a href="#" class="btn btn-warning btn-sm">edit</a>
-								<a href="#" class="btn btn-danger btn-sm">delete</a>
-							 </td>
+                            <td><?php echo $patient['id'] ?></td>
+                            <td><?php echo $patient['first_name'] ?></td>
+                            <td><?php echo $patient['phone'] ?></td>
+                             <td><span class="tag tag-success"><?php echo $patient['gender'] ?></span></td>
+                            
                         </tr>
+                        <?php }?>
 
 
                     </tbody>

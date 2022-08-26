@@ -9,8 +9,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"> Doctors list</h3>
-                <a href="doctor.new.php" class="btn btn-primary btn-sm mx-3">New Doctor</a>
-
+        
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -28,24 +27,31 @@
                         <tr>
                             <th>ID</th>
                             <th>Full Name</th>
-                            <th>Phone</th>
-                            <th>Gender</th><th>actions</th>
+                            <th>Gender</th>
+                            <th>Registered At</th>
+                            <th>actions</th>
 
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        $doctors= fetchAllData('doctor');
+
+                        foreach($doctors as $doctor){
+                        ?>
 
                         <tr>
-                            <td>183</td>
-                            <td>Abebe Bekele</td>
-                            <td>0912121212</td>
-                             <td><span class="tag tag-success">Male</span></td>
+                            <td><?php echo $doctor['id']; ?></td>
+                            <td><?php echo $doctor['first_name']. " " .$doctor['middle_name']; ?></td>
+                            <td><span class="tag tag-success"><?php echo $doctor['gender']; ?></span></td>
+                            <td><?php echo $doctor['registered_at']; ?></td>
                             <td>
 								<a href="#" class="btn btn-warning btn-sm">edit</a>
 								<a href="#" class="btn btn-danger btn-sm">delete</a>
 							 </td>
                             
                         </tr>
+                        <?php } ?>
 
 
                     </tbody>

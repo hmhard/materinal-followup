@@ -22,13 +22,14 @@ if (isset($_POST['register'])) {
 
     $sql = "UPDATE patient  SET  phone=?, first_name=?, middle_name=?, last_name=?, gender=? WHERE id=?";
 
+    $gender="Female";
 
 
     $stmt = mysqli_prepare($conn, $sql);
 
     print_r($stmt);
 
-    mysqli_stmt_bind_param($stmt, 'sssssi', $_POST['phone'], $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $_POST['gender'], $_POST['id']);
+    mysqli_stmt_bind_param($stmt, 'sssssi', $_POST['phone'], $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $gender, $_POST['id']);
 
     $res = mysqli_stmt_execute($stmt);
 
@@ -97,17 +98,7 @@ if (isset($_POST['register'])) {
                         </div>
 
                     </div>
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <label for="male">Male</label>
-                            <input checked type="radio" name="gender" id="gender" value="male" />
-                            <label for="female">Female</label>
-                            <input type="radio" name="gender" id="female" value="female" />
-                        </div>
-
-                    </div>
+                   
                 </div>
 
 
