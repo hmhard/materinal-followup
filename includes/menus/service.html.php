@@ -7,7 +7,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="nav-link">
+				<a href="patient.list.php" class="nav-link">
 					<i class="fa fa-tasks nav-icon"></i>
 					<p>Maternal List</p>
 				</a>

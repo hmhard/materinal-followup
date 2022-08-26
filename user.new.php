@@ -13,13 +13,12 @@ if (isset($_POST['register'])) {
                                 VALUES (?,?,?,?,?,?,?,?,?)";
 
     $password = generate_random_string(6);
-    $user_type_id = 1;
 
 
     $stmt = mysqli_prepare($conn, $sql);
 
 
-    mysqli_stmt_bind_param($stmt, 'sssssssii', $_POST['email'], $_POST['phone'], $password, $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $_POST['gender'], $user_type_id, $user->id);
+    mysqli_stmt_bind_param($stmt, 'sssssssii', $_POST['email'], $_POST['phone'], $password, $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'], $_POST['gender'], $_POST['user_type'], $user->id);
 
     mysqli_stmt_execute($stmt);
 
@@ -92,6 +91,21 @@ if (isset($_POST['register'])) {
                         <div class="form-group">
                             <label for="phone">Phone</label>
                             <input type="text" value="" name="phone" id="phone" class="form-control" autocomplete="phone" required>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                        <label for="user_type">User Type</label>
+                            <select for="user_type"  class="form-control" name="user_type" id="user_type">
+                        <option value="1">Admin</option>    
+                        <option value="2">Doctor</option>    
+                        <option value="3">Nurse</option>    
+                         
+                        </select>
+</select> 
+                        
                         </div>
 
                     </div>
