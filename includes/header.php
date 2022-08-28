@@ -6,6 +6,11 @@ include 'helpers/message.php';
 include 'helpers/mysqlHelper.php';
 include 'helpers/myHelper.php';
 
+const USERS_TYPE_ADMIN=1;
+const USERS_TYPE_DOCTOR=2;
+const USERS_TYPE_NURSE=3;
+const USERS_TYPE_PATIENT=4;
+
 clearMessages();
 
 $loggedIn = false;
