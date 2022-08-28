@@ -21,7 +21,7 @@
 
                         <div class="form-group">
                             <label for="first-name">First Name</label>
-                            <input type="text" value="" name="first_name" id="first-name" class="form-control" autocomplete="first_name" required autofocus>
+                            <input type="text"  name="first_name" id="first-name" class="form-control" autocomplete="first_name" required autofocus>
                         </div>
 
                     </div>
@@ -29,7 +29,7 @@
 
                         <div class="form-group">
                             <label for="last-name">Last Name</label>
-                            <input type="text" value="" name="last_name" id="last-name" class="form-control" autocomplete="last_name" required>
+                            <input type="text"  name="last_name" id="last-name" class="form-control" autocomplete="last_name" required>
                         </div>
 
                     </div>
@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" value="" name="phone" id="phone" class="form-control" autocomplete="phone" required>
+                            <input type="text"  name="phone" pattern="(09|\+2519)[0-9]{8}" id="phone" class="form-control" autocomplete="phone" required>
                         </div>
 
                     </div>

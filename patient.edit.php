@@ -94,7 +94,7 @@ if (isset($_POST['register'])) {
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" autocomplete="phone" value="<?php echo $patient->phone; ?>" required>
+                            <input type="text" name="phone" pattern="(09|\+2519)[0-9]{8}" id="phone" class="form-control" autocomplete="phone" value="<?php echo $patient->phone; ?>" required>
                         </div>
 
                     </div>
