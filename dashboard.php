@@ -32,7 +32,7 @@ $patients=fetchAllData("patient","id","DESC");
             <span class="info-box-icon bg-success"><i class="far fa-envelope"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text"><a href="" class="small-box-footer">
+                <span class="info-box-text"><a href="appointment.list.php" class="small-box-footer">
                          Appointments
                     </a></span>
                 <span class="info-box-number"><?php echo $appointment_count; ?></span>

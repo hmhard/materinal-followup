@@ -18,7 +18,7 @@ if (isset($_POST['delete'])) {
 $msg = '';
 $error = false;
 
-$sql = "SELECT p.* FROM patient as p , triage as t,doctor as d where t.patient_id=p.id  and t.doctor_id=d.id and d.user_id= ".$user->id." ORDER by p.id DESC";
+$sql = "SELECT * FROM appointment a, patient as p where p.id=a.patient_id";
 $result = mysqli_query($conn, $sql);
 
 
@@ -30,14 +30,14 @@ $result = mysqli_query($conn, $sql);
 
 <div class="col-12">
 
-    <h4>Mothers list </h4>
+    <h4>Appointment list </h4>
 </div>
 
 <div class="col-12">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"> Mothers list</h3>
-
+            <h3 class="card-title"> Appointment list</h3>
+            <a href="patient.new.php" class="btn btn-primary btn-sm mx-3">New appointment</a>
 
             <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -54,13 +54,13 @@ $result = mysqli_query($conn, $sql);
             <table class="table table-hover ">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>MRN</th>
-                       
                         <th>Full Name</th>
                         <th>Phone</th>
-                        <th>Kebele</th>
-                        <th>Woreda</th>
-                        <th>Registered At</th>
+                        <th>Appointment Date</th>
+                        <th>Remaining time</th>
+              
                         <th>actions</th>
 
                     </tr>
@@ -70,20 +70,27 @@ $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0) {
                         // output data of each row
+                        $count=0;
                         while ($row = mysqli_fetch_assoc($result)) {
 
                     ?>
                             <tr>
+                                <td><?php  echo ++$count; ?></td>
                                 <td><?php echo $row['mrn'] ?></td>
                              
                                 <td><?php echo $row['first_name'] . " " . $row['middle_name']; ?></td>
                                 <td><?php echo $row['phone'] ?></td>
-                                <td><?php echo $row['kebele'] ?></td>
-                                <td><?php echo $row['woreda'] ?></td>
-                                <td><?php echo $row['created_at'] ?></td>
+                              
+                                <td><?php
+                              
+                                echo $row['appointment_date']; ?></td>
+                               
+                                <td><?php
+                                $dated=date_difference(new \DateTime(),new \DateTime($row['appointment_date']));
+                                echo "".$dated->days ." days ".$dated->h." hours ".$dated->i." minutes ".$dated->s." seconds."; ?></td>
                                 <td>
-                                    <a href="diagnose.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">diagnose</a>
-                                   
+                                    <a href="#" class="btn btn-warning btn-sm">edit</a>
+                                  
                                 </td>
                             </tr>
 

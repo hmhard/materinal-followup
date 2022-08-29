@@ -15,19 +15,16 @@ if (isset($_POST['register'])) {
 
 
 
-    $sql = "INSERT INTO `triage`(`card_no`, `status`, `order_no`, `doctor_id`, `patient_id`, `temp`, `bp`, `pulse_rate`, `rr`, `weight`, `height`) 
-                  VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO `pregnancy_info`(`patient_id`, `lmp`, `advice`, `danger_sign`, `current_pregnancy_info`,assessed_by) 
+    VALUES  (?,?,?,?,?,?)";
 
-    $allergies = "";
-    $registered_by_id = $user->id;
-    $status = 0;
-    $house_number = rand(10, 1000);
-
+    $assessed_by = $user->first_name;
+  
 
     $stmt = mysqli_prepare($conn, $sql);
 
 
-    mysqli_stmt_bind_param($stmt, 'sisiiiiiiii', $_POST['card_number'], $status, $_POST['order_number'], $_POST['doctor'], $_POST['patient'], $_POST['temperature'], $_POST['bp'], $_POST['pulse_rate'], $_POST['rr'], $_POST['weight'], $_POST['height']);
+    mysqli_stmt_bind_param($stmt, 'isssss', $id, $_POST['lmp'], $_POST['advice'], $_POST['danger_sign'], $_POST['current_pregnancy_info'], $assessed_by);
 
     mysqli_stmt_execute($stmt);
 
@@ -35,13 +32,38 @@ if (isset($_POST['register'])) {
 
         setMessage("Registered successfully!");
 
-        $sql = "UPDATE patient SET status=1 WHERE id=" . $id;
+        $sql = "UPDATE patient SET status=2 WHERE id=" . $id;
 
         if (mysqli_query($conn, $sql)) {
         }
+        if(isset($_POST['appointment_date'])){
+
+            $sql = "INSERT INTO `appointment`(`patient_id`, `doctor_id`, `appointment_date`, `is_made`, `is_approved`, `status`) 
+            VALUES  (?,?,?,?,?,?)";
+        
+            $assessed_by = $user->first_name;
+          
+        
+            $stmt = mysqli_prepare($conn, $sql);
+            $is_made=0;
+            $status=0;
+            $is_approved=0;
+        
+        
+            mysqli_stmt_bind_param($stmt, 'iisiii', $id, $user->id, $_POST['appointment_date'], $is_made,$is_approved,$status);
+        
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_insert_id($conn)) {
+
+                setMessage("Appointment successfully!");
+            }
+        
+        
+    }
 
 
-        header('Location:triage.list.php');
+        header('Location:mother.list.php');
     } else {
 
         $error = true;
@@ -88,6 +110,15 @@ if (isset($_POST['register'])) {
                         
                         <div class="form-group">
                             <input type="hidden" name="patient" value="<?php echo $id; ?>" />
+                            <label for="current_pregnancy_info">current pregnancy info.</label>
+                            <textarea  rows="8" name="current_pregnancy_info" id="current_pregnancy_info" class="form-control" autocomplete="current_pregnancy_info" required></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">
+                        
+                        <div class="form-group">
+                            <input type="hidden" name="patient" value="<?php echo $id; ?>" />
                             <label for="danger_sign">Danger Signs</label>
                             <textarea  rows="8" name="danger_sign" id="danger_sign" class="form-control" autocomplete="danger_sign" required></textarea>
                         </div>
@@ -123,8 +154,8 @@ if (isset($_POST['register'])) {
                         
                         <div class="form-group">
                             <input type="hidden" name="patient" value="<?php echo $id; ?>" />
-                            <label for="advise">Consultation and advise given</label>
-                            <textarea  rows="8" name="advise" id="advise" class="form-control" autocomplete="advise" required></textarea>
+                            <label for="advice">Consultation and advice given</label>
+                            <textarea  rows="8" name="advice" id="advice" class="form-control" autocomplete="advice" required></textarea>
                         </div>
 
                     </div>

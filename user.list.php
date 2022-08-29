@@ -78,9 +78,15 @@ $result = mysqli_query($conn, $sql);
                                 <td><?php echo $row['first_name'] . " " . $row['middle_name']; ?></td>
                                 <td><?php echo $row['phone'] ?></td>
                                 <td><span class="tag tag-success"><?php echo $row['gender'] ?></span></td>
+                                <td><span class="tag tag-success"><?php echo $user_types[$row['user_type_id']]; ?></span></td>
                                 <td><?php echo $row['registered_at'] ?></td>
                                 <td>
                                     <a href="user.edit.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">edit</a>
+                                    <form method="post" onsubmit="return confirm('are you sure you want to delete this user');" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-horizontal form-inline">
+                                        <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>" />
+                                        <input type="hidden" name="deactivate" value="true" />
+                                        <button class="btn btn-warning btn-sm">deactivate</button>
+                                    </form>
                                     <form method="post" onsubmit="return confirm('are you sure you want to delete this user');" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-horizontal form-inline">
                                         <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>" />
                                         <input type="hidden" name="delete" value="true" />

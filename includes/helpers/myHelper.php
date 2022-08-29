@@ -8,3 +8,9 @@ function generate_random_string($length=10){
     }
     return $randomString;
 }
+
+function date_difference($date1,$date2=null){
+    $date2=$date2?:(new \DateTime('tomorrow'));
+   $diff= date_diff($date1,$date2);
+   return $diff;
+}

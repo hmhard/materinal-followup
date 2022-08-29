@@ -28,7 +28,7 @@
 
 
 	<li class="nav-item">
-		<a href="#" class="nav-link">
+		<a href="appointment.list.php" class="nav-link">
 			<i class="fa fa-tasks nav-icon"></i>
 			<p>Appointment List</p>
 		</a>
