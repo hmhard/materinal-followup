@@ -48,7 +48,9 @@
 			</div>
 
 		</li>
-	<?php	 if (true){ ?>
+	<?php	 if($user) {
+	
+		?>
 		
 		<li  class="nav-item">
 			<a href="logout.php" class="nav-link">
@@ -57,7 +59,7 @@
 		</li>
 		<?php }else{ ?>
 			<li  class="nav-item">
-			<a href="#" class="nav-link">
+			<a href="login.php" class="nav-link">
 				<i class="fa fa-sign-in-alt" aria-hidden="true"></i>Login
 			</a>
 		</li>

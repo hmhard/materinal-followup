@@ -22,7 +22,28 @@ if (isset($_POST['register'])) {
 
     mysqli_stmt_execute($stmt);
 
-    if (mysqli_insert_id($conn)) {
+    $last_id=mysqli_insert_id($conn);
+    if ($last_id) {
+
+
+        
+        if($_POST['user_type'] ==USERS_TYPE_DOCTOR){
+            
+
+        $sql = "INSERT INTO `doctor`(`first_name`, `middle_name`, `last_name`, `gender`, `birth_date`, `user_id`)
+        VALUES (?,?,?,?,?,?)";
+
+
+
+            $stmt = mysqli_prepare($conn, $sql);
+            $reg_date=(new \DateTime())->format('Y-m-d H:i:s');
+
+
+            mysqli_stmt_bind_param($stmt, 'sssssi', $_POST['first_name'], $_POST['middle_name'], $_POST['last_name'] ,$_POST['gender'],$_POST['date_of_birth'], $last_id);
+
+            mysqli_stmt_execute($stmt);
+            print_r(mysqli_error($conn));
+        }
 
         setMessage("Registered successfully! your password is ".$password. " ");
 
@@ -31,6 +52,7 @@ if (isset($_POST['register'])) {
     } else {
         $error = true;
         $msg = 'error occuered.';
+        echo '<div class="alert alert-danger">'.mysqli_error($conn)."</div>";
     }
 }
 
@@ -97,6 +119,14 @@ if (isset($_POST['register'])) {
                     <div class="col-sm-4">
 
                         <div class="form-group">
+                            <label for="date_of_birth">Birth Date</label>
+                            <input type="date"  name="date_of_birth" id="date_of_birth"  class="form-control" autocomplete="date_of_birth" required>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
                         <label for="user_type">User Type</label>
                             <select for="user_type"  class="form-control" name="user_type" id="user_type">
                         <option value="1">Admin</option>    
@@ -123,9 +153,9 @@ if (isset($_POST['register'])) {
                 </div>
 
 
-                <input name="register" value="Register" class="btn float-right  btn-info my-3 " type="submit">
+                <input name="register" value="Register" class="btn float-right  btn-info my-3 " type="submit" />
 
-                </input>
+                
 
             </form>
 

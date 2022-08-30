@@ -6,7 +6,7 @@ $password = "Qwerty12!@";
     
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password,"amu_materinal");
+$conn = mysqli_connect($servername, $username, $password,"amu_maternal");
 
 // Check connection
 if (!$conn) {

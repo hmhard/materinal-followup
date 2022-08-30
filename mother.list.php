@@ -82,8 +82,13 @@ $result = mysqli_query($conn, $sql);
                                 <td><?php echo $row['woreda'] ?></td>
                                 <td><?php echo $row['created_at'] ?></td>
                                 <td>
+                                    <?php if($row['status']!=2){ ?>
                                     <a href="diagnose.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">diagnose</a>
-                                   
+                                    <?php }
+                                    else{
+                                    ?>
+                                    <a href="mother.show.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">view</a>
+                                   <?php } ?>
                                 </td>
                             </tr>
 

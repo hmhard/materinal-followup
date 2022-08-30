@@ -4,6 +4,7 @@ $patients_count=count(fetchAllData("patient"));
 $appointment_count=count(fetchAllData("appointment"));
 $doctor_count=count(fetchAllData("doctor"));
 $user_count=count(fetchAllData("user"));
+$triage_count=count(fetchAllData("triage"));
 
 $patients=fetchAllData("patient","id","DESC");
 
@@ -11,14 +12,17 @@ $patients=fetchAllData("patient","id","DESC");
 
 
 
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-12">
+<div class="row container">
+    
+<?php if ($user->user_type_id == USERS_TYPE_NURSE || $user->user_type_id == USERS_TYPE_ADMIN) { ?>
+
+    <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
             <span class="info-box-icon bg-info"><i class="fa fa-list"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text"> <a href="patient.list.php" class="small-box-footer">
-                        Total Patients
+                        Total Mothers
                     </a></span>
                 <span class="info-box-number"><?php echo $patients_count;?></span>
             </div>
@@ -26,8 +30,41 @@ $patients=fetchAllData("patient","id","DESC");
         </div>
         <!-- /.info-box -->
     </div>
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="fa fa-list"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text"> <a href="triage.list.php" class="small-box-footer">
+                        Total Triage
+                    </a></span>
+                <span class="info-box-number"><?php echo $triage_count;?></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
+    <?php } ?>
+   
     <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-12">
+    <?php if ($user->user_type_id == USERS_TYPE_DOCTOR || $user->user_type_id == USERS_TYPE_ADMIN) { ?>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-success"><i class="far fa-envelope"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text"><a href="mother.list.php" class="small-box-footer">
+                         Mothers List
+                    </a></span>
+                <span class="info-box-number"><?php echo $patients_count; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
             <span class="info-box-icon bg-success"><i class="far fa-envelope"></i></span>
 
@@ -41,8 +78,11 @@ $patients=fetchAllData("patient","id","DESC");
         </div>
         <!-- /.info-box -->
     </div>
+    <?php } ?>
+    <?php if ($user->user_type_id == USERS_TYPE_ADMIN) { ?>
+
     <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-12">
+    <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
             <span class="info-box-icon bg-warning"><i class="far fa-envelope-open"></i></span>
 
@@ -56,8 +96,9 @@ $patients=fetchAllData("patient","id","DESC");
         </div>
         <!-- /.info-box -->
     </div>
+  
     <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-12">
+    <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
             <span class="info-box-icon bg-danger"><i class="far fa-envelope-open"></i></span>
 
@@ -72,6 +113,7 @@ $patients=fetchAllData("patient","id","DESC");
         <!-- /.info-box -->
     </div>
     <!-- /.col -->
+    <?php } ?>
 </div>
 </div>
 

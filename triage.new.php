@@ -102,48 +102,48 @@ if (isset($_POST['register'])) {
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <label for="temperature">Temperature</label>
-                            <input type="number" name="temperature" id="temperature" class="form-control" autocomplete="temperature" required>
+                            <label for="temperature">Temperature(℃)</label>
+                            <input type="number" min="1" max="60"  name="temperature" id="temperature" class="form-control" autocomplete="temperature" required>
                         </div>
 
                     </div>
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <label for="bp">BP</label>
-                            <input type="number" name="bp" id="bp" class="form-control" autocomplete="bp" required>
+                            <label for="bp">BP-blood pressure (mm/Hg)</label>
+                            <input type="number"  name="bp" id="bp" class="form-control" autocomplete="bp" required>
                         </div>
 
                     </div>
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <label for="pulse_rate">Pulse Rate</label>
-                            <input type="number" name="pulse_rate" id="pulse_rate" class="form-control" autocomplete="pulse_rate" required>
+                            <label for="pulse_rate">Pulse Rate(bpm)</label>
+                            <input type="number" min="1" name="pulse_rate" id="pulse_rate" class="form-control" autocomplete="pulse_rate" required>
                         </div>
 
                     </div>
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <label for="rr">RR</label>
-                            <input type="number" name="rr" id="rr" class="form-control" autocomplete="rr" required>
+                            <label for="rr">RR(respiration rate)- RPM</label>
+                            <input type="number" min="1"  name="rr" id="rr" class="form-control" autocomplete="rr" required>
                         </div>
 
                     </div>
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <label for="weight">weight</label>
-                            <input type="number" name="weight" id="weight" class="form-control" autocomplete="weight" required>
+                            <label for="weight">weight (kg)</label>
+                            <input type="number" min="10" max="150" name="weight" id="weight" class="form-control" autocomplete="weight" required>
                         </div>
 
                     </div>
                     <div class="col-sm-4">
 
                         <div class="form-group">
-                            <label for="height">height</label>
-                            <input type="number" name="height" id="height" class="form-control" autocomplete="height" required>
+                            <label for="height">height (cm)</label>
+                            <input type="number" min="1" max="1000" name="height" id="height" class="form-control" autocomplete="height" required>
                         </div>
 
                     </div>
@@ -156,10 +156,11 @@ if (isset($_POST['register'])) {
 
                             ?>
                             <label for="doctor"> Assign Doctor</label>
-                            <select for="doctor" class="form-control" name="doctor" id="doctor">
+                            <select for="doctor" class="form-control" name="doctor" id="doctor" required>
+                                <option>Select Doctor</option>
                                 <?php foreach ($doctors as $key => $doctor) {
                                 ?>
-                                    <option value="<?php echo $doctor['id']; ?>"><?php echo $doctor['first_name'] . " " . $doctor['middle_name'] ?></option>
+                                    <option value="<?php echo $doctor['id']; ?>"><?php echo "Dr. " .ucwords($doctor['first_name'] . " " . $doctor['middle_name']) ?></option>
 
                                 <?php } ?>
 

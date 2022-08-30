@@ -28,7 +28,7 @@
                             <th>ID</th>
                             <th>Full Name</th>
                             <th>Gender</th>
-                            <th>Registered At</th>
+                            <th>Assigned At</th>
                             <th>actions</th>
 
                         </tr>
@@ -42,13 +42,11 @@
 
                         <tr>
                             <td><?php echo $doctor['id']; ?></td>
-                            <td><?php echo $doctor['first_name']. " " .$doctor['middle_name']; ?></td>
+                            <td><?php echo "Dr. ".$doctor['first_name']. " " .$doctor['middle_name']; ?></td>
                             <td><span class="tag tag-success"><?php echo $doctor['gender']; ?></span></td>
                             <td><?php echo $doctor['registered_at']; ?></td>
                             <td>
-								<a href="#" class="btn btn-warning btn-sm">edit</a>
-								<a href="#" class="btn btn-danger btn-sm">delete</a>
-							 </td>
+								 </td>
                             
                         </tr>
                         <?php } ?>

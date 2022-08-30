@@ -13,12 +13,28 @@ if (isset($_POST['delete'])) {
     }
 }
 
+if (isset($_GET['change'])) {
+    
+    $val=$_GET['action'];
+    
+    
+   
+    $id=$_GET['appointment_id'];
+
+    $sql = "UPDATE  appointment SET status=$val WHERE id=" . $id;
+    if (mysqli_query($conn, $sql)) {
+
+        setMessage("Updated successfully");
+
+        header('Location:appointment.list.php');
+    }
+}
 
 // login patient and set session
 $msg = '';
 $error = false;
 
-$sql = "SELECT * FROM appointment a, patient as p where p.id=a.patient_id";
+$sql = "SELECT *, a.id as appointment_id,a.status as a_status  FROM appointment a, patient as p where p.id=a.patient_id";
 $result = mysqli_query($conn, $sql);
 
 
@@ -37,8 +53,7 @@ $result = mysqli_query($conn, $sql);
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"> Appointment list</h3>
-            <a href="patient.new.php" class="btn btn-primary btn-sm mx-3">New appointment</a>
-
+            
             <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -57,8 +72,9 @@ $result = mysqli_query($conn, $sql);
                         <th>#</th>
                         <th>MRN</th>
                         <th>Full Name</th>
-                        <th>Phone</th>
-                        <th>Appointment Date</th>
+                       
+                        <th> Date</th>
+                        <th>Status</th>
                         <th>Remaining time</th>
               
                         <th>actions</th>
@@ -79,18 +95,31 @@ $result = mysqli_query($conn, $sql);
                                 <td><?php echo $row['mrn'] ?></td>
                              
                                 <td><?php echo $row['first_name'] . " " . $row['middle_name']; ?></td>
-                                <td><?php echo $row['phone'] ?></td>
+                             
+                                <td><?php echo $row['appointment_date']; ?></td>
+                                <td><span class="badge badge-success"><?php echo  $row['a_status']==1?"Done":"Not Active"; ?></span></td> 
                               
-                                <td><?php
-                              
-                                echo $row['appointment_date']; ?></td>
                                
-                                <td><?php
-                                $dated=date_difference(new \DateTime(),new \DateTime($row['appointment_date']));
-                                echo "".$dated->days ." days ".$dated->h." hours ".$dated->i." minutes ".$dated->s." seconds."; ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-sm">edit</a>
+                                    <?php
+                                $dated=date_difference(new \DateTime(),new \DateTime($row['appointment_date']));
+                               if($row['a_status']!=1){ 
                                   
+                                echo "".$dated->days ." days ".$dated->h." hours ".$dated->i." minutes ".$dated->s." seconds."; 
+                             }
+                             else{
+                                 echo "Aldready Done";
+                             }
+                             ?>
+                             </td>
+                             <td>
+                                    <?php if($row['a_status']==1){ ?>
+                                    <a href="?change=true&action=0&appointment_id=<?php echo $row['appointment_id'];?>" class="btn btn-warning btn-sm">Cancel</a>
+                                    
+                                    <?php }
+                                    else{ ?>
+                                    <a href="?change=true&action=1&appointment_id=<?php echo $row['appointment_id'];?>" class="btn btn-success btn-sm">Done</a>
+                                  <?php } ?>
                                 </td>
                             </tr>
 

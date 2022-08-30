@@ -13,6 +13,12 @@
 			<p>Triage</p>
 		</a>
 	</li>
+	<li class="nav-item">
+		<a href="patient.list.php" class="nav-link">
+			<i class="fa fa-tasks nav-icon"></i>
+			<p>Maternal List</p>
+		</a>
+	</li>
 <?php } ?>
 
 <?php if ($user->user_type_id == USERS_TYPE_DOCTOR) { ?>

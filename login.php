@@ -80,7 +80,7 @@ include 'includes/helpers/connection.php';
 
 							try {
 
-								$sql = "SELECT * FROM user where email=? and password=?";
+								$sql = "SELECT * FROM user where email=? and password=? and is_active=1";
 
 								$stmt = mysqli_prepare($conn, $sql);
 								
@@ -161,9 +161,7 @@ include 'includes/helpers/connection.php';
 									<input class="btn btn-block  btn-info my-3 " name="login" type="submit" value="Sign in">
 
 									</input>
-									<a class=" text-danger my-3 float-right" href="#">
-										Forgot Password?
-									</a>
+									
 								</form>
 							</div>
 						</div>

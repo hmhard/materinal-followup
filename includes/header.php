@@ -15,13 +15,15 @@ $user_types=["1"=>"Admin","2"=>"Doctor","3"=>"Nurse","4"=>"Patient"];
 
 clearMessages();
 
+$user= new stdClass();
+
 $loggedIn = false;
-if ($_SESSION['user_id']) {
+if (isset($_SESSION['user_id'])) {
 	$loggedIn = true;
 	$user = (object) $_SESSION['user'];
 	$user->fullName = $user->first_name . " " . $user->middle_name;
 } else {
-	header('Location:logout.php');
+	// header('Location:logout.php');
 }
 ?>
 <!DOCTYPE html>

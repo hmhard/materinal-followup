@@ -22,9 +22,9 @@ Boditti primary hospital is one of the health institution of Ethiopia that is go
 <IMG SRC="bphgate.png" width="500" height="200"> <IMG SRC="lab.jpg" width="500" height="200">
 
 
-<div class="h1 text-danger text-capitalize"><h2>With a great power comes great responsibility</h2></div>
-		<a href="login.php" class="btn btn-outline-primary">Already Registered?</a>
-<br>				<a href="register.php" class="btn btn-outline-info">not registered yet?</a>
+<div class="h1 text-danger text-capitalize"><h2>No mother should die while giving life!!</h2></div>
+		<a href="login.php" class="btn btn-outline-primary">Login</a>
+			
 			</center>
 		</div>
 	</div>
